@@ -13,6 +13,8 @@
         :items="items"
         item-text="label"
         label="Convert from one thing to another thing"
+        v-on:select="comboSelected"
+        :error-messages="comboError"
       ></v-combobox>
       <v-btn color="info" v-on:click="convert">Convert</v-btn>
       <v-textarea
@@ -58,12 +60,25 @@ export default {
       inputText: '',
       outputText: '',
       items: converterList,
-      comboSelection: ''
+      comboSelection: '',
+      comboError: []
     };
   },
   methods: {
+    comboSelected () {
+      this.comboError = [];
+    },
     convert () {
-      this.outputText = this.comboSelection.converter(this.inputText.trim());
+      this.comboError = [];
+      if (!this.comboSelection) {
+        this.comboError.push('Please select one');
+      } else {
+        if (typeof this.comboSelection.converter === 'function') {
+          this.outputText = this.comboSelection.converter(this.inputText.trim());
+        } else {
+          this.comboError.push('Not yet implemented');
+        }
+      }
     }
   }
 };
