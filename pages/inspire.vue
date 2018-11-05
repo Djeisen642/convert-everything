@@ -27,17 +27,17 @@
 </template>
 
 <script>
-import plistToJson from '../converters/plist-json';
-let converters = [
-  { label: 'xml -> json', converter: '1' },
+import converters from '../converters';
+let converterList = [
+  { label: 'xml -> json', converter: converters.xmlToJson },
   { label: 'json -> xml', converter: '2' },
-  { label: 'csv -> json', converter: '3' },
+  { label: 'csv -> json', converter: converters.csvToJson },
   { label: 'json -> csv', converter: '4' },
   { label: 'text -> binary', converter: '5' },
   { label: 'binary -> text', converter: '6' },
-  { label: 'text -> hex', converter: '7' },
+  { label: 'text -> hex', converter: converters.textToHex },
   { label: 'hex -> text', converter: '8' },
-  { label: 'plist -> json', converter: plistToJson },
+  { label: 'plist -> json', converter: converters.plistToJson },
   { label: 'json -> plist', converter: '9' },
   { label: 'text -> base64', converter: '10' },
   { label: 'base64 -> text', converter: '11' },
@@ -57,7 +57,7 @@ export default {
     return {
       inputText: '',
       outputText: '',
-      items: converters,
+      items: converterList,
       comboSelection: ''
     };
   },
