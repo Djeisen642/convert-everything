@@ -1,7 +1,6 @@
 # convert-everything
 
-> Convert some things into other things
-
+> Convert some things into other things  
 > https://convert-everything.herokuapp.com/
 
 ## Build Setup
